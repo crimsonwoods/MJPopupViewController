@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+MJPopupViewController.h"
 
 @interface MJPopupBackgroundView : UIView
+
+@property (nonatomic) CGFloat alpha;
+@property (nonatomic) MJPopupBackgroundMode mode;
 
 @end

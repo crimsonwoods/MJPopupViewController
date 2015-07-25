@@ -10,7 +10,7 @@
 
 @class MJPopupBackgroundView;
 
-typedef enum {
+typedef enum MJPopupViewAnimation {
     MJPopupViewAnimationFade = 0,
     MJPopupViewAnimationSlideBottomTop = 1,
     MJPopupViewAnimationSlideBottomBottom,
@@ -22,6 +22,11 @@ typedef enum {
     MJPopupViewAnimationSlideRightRight,
 } MJPopupViewAnimation;
 
+typedef enum MJPopupBackgroundMode {
+    MJPopupBackgroundModeTransparency = 0,
+    MJPopupBackgroundModeRadialGradation,
+} MJPopupBackgroundMode;
+
 @interface UIViewController (MJPopupViewController)
 
 @property (nonatomic, retain) UIViewController *mj_popupViewController;
@@ -29,6 +34,7 @@ typedef enum {
 
 - (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType;
 - (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType dismissed:(void(^)(void))dismissed;
+- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType backgroundMode:(MJPopupBackgroundMode)mode backgroundAlpha:(CGFloat)alpha dontDismissByTouchUpOutside:(BOOL)dontDismissByTouchUpOutside dismissed:(void(^)(void))dismissed;
 - (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType;
 
 @end
