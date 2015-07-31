@@ -53,7 +53,7 @@ static void * const keypath = (void*)&keypath;
 
 - (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType dismissed:(void(^)(void))dismissed
 {
-    [self presentPopupViewController:popupViewController animationType:animationType backgroundMode:MJPopupBackgroundModeRadialGradation backgroundAlpha:0.75f   dontDismissByTouchUpOutside:YES dismissed:dismissed];
+    [self presentPopupViewController:popupViewController animationType:animationType backgroundMode:MJPopupBackgroundModeRadialGradation backgroundAlpha:0.75f   dontDismissByTouchUpOutside:NO dismissed:dismissed];
 }
 
 - (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType
