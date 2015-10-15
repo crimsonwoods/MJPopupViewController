@@ -26,6 +26,50 @@
                 CGColorSpaceRelease(colorSpace);
             }
             break;
+        case MJPopupBackgroundModeImage:
+            {
+                if (_image != nil) {
+                    [_image drawInRect:rect];
+                }
+            }
+            break;
+        case MJPopupBackgroundModeImageCropped:
+            {
+                if (_image != nil) {
+                    CGFloat const aspectRatio = rect.size.height / rect.size.width;
+                    CGFloat const fitHeight = _image.size.width * aspectRatio;
+                    CGFloat const fitWidth = _image.size.height / aspectRatio;
+
+                    CGFloat x, y, width, height;
+                    if (fitHeight <= _image.size.height) {
+                        x = 0 * _image.scale;
+                        y = (_image.size.height - fitHeight) / 2.0 * _image.scale;
+                        width = _image.size.width * _image.scale;
+                        height = fitHeight * _image.scale;
+                    } else {
+                        x = (_image.size.width - fitWidth) / 2.0 * _image.scale;
+                        y = 0 * _image.scale;
+                        width = fitWidth * _image.scale;
+                        height = _image.size.height * _image.scale;
+                    }
+
+                    CGImageRef cgimage = _image.CGImage;
+                    if (cgimage != nil) {
+                        CGRect const cropRect = CGRectMake(x, y, width, height);
+                        CGImageRef cropped = CGImageCreateWithImageInRect(cgimage, cropRect);
+                        if (cropped != nil) {
+                            UIImage *img = [UIImage imageWithCGImage:cropped
+                                                               scale:_image.scale
+                                                         orientation:_image.imageOrientation];
+                            if (img != nil) {
+                                [img drawInRect:rect];
+                            }
+                            CGImageRelease(cropped);
+                        }
+                    }
+                }
+            }
+            break;
         case MJPopupBackgroundModeRadialGradation:
         default:
             {

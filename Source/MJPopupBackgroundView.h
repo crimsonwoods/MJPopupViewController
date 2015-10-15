@@ -13,5 +13,6 @@
 
 @property (nonatomic) CGFloat alpha;
 @property (nonatomic) MJPopupBackgroundMode mode;
+@property (nonatomic, strong, nullable, retain) UIImage *image;
 
 @end

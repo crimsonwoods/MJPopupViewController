@@ -25,16 +25,19 @@ typedef enum MJPopupViewAnimation {
 typedef enum MJPopupBackgroundMode {
     MJPopupBackgroundModeTransparency = 0,
     MJPopupBackgroundModeRadialGradation,
+    MJPopupBackgroundModeImage,
+    MJPopupBackgroundModeImageCropped,
 } MJPopupBackgroundMode;
 
 @interface UIViewController (MJPopupViewController)
 
-@property (nonatomic, retain) UIViewController *mj_popupViewController;
-@property (nonatomic, retain) MJPopupBackgroundView *mj_popupBackgroundView;
+@property (nonatomic, retain, nullable) UIViewController *mj_popupViewController;
+@property (nonatomic, retain, nullable) MJPopupBackgroundView *mj_popupBackgroundView;
 
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType;
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType dismissed:(void(^)(void))dismissed;
-- (void)presentPopupViewController:(UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType backgroundMode:(MJPopupBackgroundMode)mode backgroundAlpha:(CGFloat)alpha dontDismissByTouchUpOutside:(BOOL)dontDismissByTouchUpOutside dismissed:(void(^)(void))dismissed;
+- (void)presentPopupViewController:(nonnull UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType;
+- (void)presentPopupViewController:(nonnull UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType dismissed:(nullable void(^)(void))dismissed;
+- (void)presentPopupViewController:(nonnull UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType backgroundMode:(MJPopupBackgroundMode)mode backgroundAlpha:(CGFloat)alpha dontDismissByTouchUpOutside:(BOOL)dontDismissByTouchUpOutside dismissed:(nullable void(^)(void))dismissed;
+- (void)presentPopupViewController:(nonnull UIViewController*)popupViewController animationType:(MJPopupViewAnimation)animationType backgroundMode:(MJPopupBackgroundMode)mode backgroundImage:(nonnull UIImage*)image dontDismissByTouchUpOutside:(BOOL)dontDismissByTouchUpOutside dismissed:(nullable void(^)(void))dismissed;
 - (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType;
 
 @end
